@@ -14,10 +14,14 @@ def menu
 		puts "1: create event"
 	 	puts "2: edit event"
 	 	puts "3: delete event"
+	 	puts "4: list events"
 	 	puts "0: exit"
 	 	user_input = gets.chomp
 	 	case user_input
 	 		when '1' then create_event
+	 		when '2' then edit_event
+	 		when '3' then delete_event
+	 		when '4' then list_event
 	 		when '0' then exit
 	 		else 
 	 			puts "This is not a valid option"
@@ -36,6 +40,14 @@ def create_event
 							 start_date: start_date, end_date: end_date, 	
 							 start_time: start_time, end_time: end_time)
 	puts "New event * #{new_event.description} * was added!\n\n"
+end
+
+def list_event
+	puts "Here are all the events: "
+	Event.all.each do |event|
+		puts "#{event.id}. #{event.description}"
+	end
+	puts "\n"
 end
 
 menu
