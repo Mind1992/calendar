@@ -25,4 +25,17 @@ def menu
 	end
 end
 
+def create_event
+	print "Description: "; description = gets.chomp
+	print "Location: "; location = gets.chomp
+	print "Start date (yyyy-mm-dd): "; start_date = gets.chomp
+	print "End date (yyyy-mm-dd): "; end_date = gets.chomp
+	print "Start time (hh:mm): "; start_time = gets.chomp
+	print "End time (hh:mm): "; end_time = gets.chomp
+	new_event = Event.create(description: description, location: location, 
+							 start_date: start_date, end_date: end_date, 	
+							 start_time: start_time, end_time: end_time)
+	puts "New event * #{new_event.description} * was added!\n\n"
+end
+
 menu
