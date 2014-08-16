@@ -55,8 +55,17 @@ def edit_event
 	print "Start date and time (yyyy-mm-dd hh:mm): "; start_datetime = gets.chomp
 	print "End date and time (yyyy-mm-dd hh:mm): "; end_datetime = gets.chomp
 	selected_event.update(location: location, 
-							 start_datetime: start_datetime, end_datetime: end_datetime)
+												start_datetime: start_datetime, 
+												end_datetime: end_datetime)
 	puts "* #{selected_event.description} * was updated"
+end
+
+def delete_event
+	list_events
+	print "Select the number of the event to delete: "
+	selected_event = Event.find(gets.chomp)
+	puts "* #{selected_event.description} * was deleted"
+	selected_event.destroy
 end
 
 menu
