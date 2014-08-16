@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+	belongs_to :user
 	validates :description, :presence => true
 	validates :location, :presence => true
 	before_create :capitalize

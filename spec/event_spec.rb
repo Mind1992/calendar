@@ -8,4 +8,5 @@ describe Event do
 		expect(new_event.description).to eq "Surfing"
 		expect(new_event.location).to eq "Smugglers cove"
 	end
+	it { should belong_to :user }
 end
