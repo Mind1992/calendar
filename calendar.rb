@@ -21,7 +21,7 @@ def menu
 	 		when '1' then create_event
 	 		when '2' then edit_event
 	 		when '3' then delete_event
-	 		when '4' then list_event
+	 		when '4' then list_events
 	 		when '0' then exit
 	 		else 
 	 			puts "This is not a valid option"
@@ -32,22 +32,31 @@ end
 def create_event
 	print "Description: "; description = gets.chomp
 	print "Location: "; location = gets.chomp
-	print "Start date (yyyy-mm-dd): "; start_date = gets.chomp
-	print "End date (yyyy-mm-dd): "; end_date = gets.chomp
-	print "Start time (hh:mm): "; start_time = gets.chomp
-	print "End time (hh:mm): "; end_time = gets.chomp
+	print "Start date and time (yyyy-mm-dd hh:mm): "; start_datetime = gets.chomp
+	print "End date and time (yyyy-mm-dd hh:mm): "; end_datetime = gets.chomp
 	new_event = Event.create(description: description, location: location, 
-							 start_date: start_date, end_date: end_date, 	
-							 start_time: start_time, end_time: end_time)
+							 start_datetime: start_datetime, end_datetime: end_datetime)
 	puts "New event * #{new_event.description} * was added!\n\n"
 end
 
-def list_event
+def list_events
 	puts "Here are all the events: "
 	Event.all.each do |event|
 		puts "#{event.id}. #{event.description}"
 	end
 	puts "\n"
+end
+
+def edit_event
+	list_events
+	print "Select the number of the event to edit: "
+	selected_event = Event.find(gets.chomp)
+	print "Location: "; location = gets.chomp
+	print "Start date and time (yyyy-mm-dd hh:mm): "; start_datetime = gets.chomp
+	print "End date and time (yyyy-mm-dd hh:mm): "; end_datetime = gets.chomp
+	selected_event.update(location: location, 
+							 start_datetime: start_datetime, end_datetime: end_datetime)
+	puts "* #{selected_event.description} * was updated"
 end
 
 menu
