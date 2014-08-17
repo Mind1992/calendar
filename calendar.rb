@@ -15,6 +15,7 @@ def menu
 	 	puts "2: edit event"
 	 	puts "3: delete event"
 	 	puts "4: list events"
+	 	puts "5: list all the surfing spots"
 	 	puts "0: exit"
 	 	user_input = gets.chomp
 	 	case user_input
@@ -22,6 +23,7 @@ def menu
 	 		when '2' then edit_event
 	 		when '3' then delete_event
 	 		when '4' then list_events
+	 		when '5' then list_surf_spots
 	 		when '0' then exit
 	 		else 
 	 			puts "This is not a valid option"
@@ -68,6 +70,12 @@ def delete_event
 	selected_event = Event.find(gets.chomp)
 	puts "* #{selected_event.description} * was deleted"
 	selected_event.destroy
+end
+
+def list_surf_spots
+	Event.surfing.each do |spot|
+		puts spot.location 
+	end
 end
 
 menu
