@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 	validates :description, :presence => true
 	validates :location, :presence => true
 	before_create :capitalize
+	scope :surfing, -> {where(description: 'Surfing')}
 
 private
 
