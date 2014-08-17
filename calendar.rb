@@ -30,12 +30,14 @@ def menu
 end
 
 def create_event
+	print "Your name: "; name = gets.chomp
 	print "Description: "; description = gets.chomp
 	print "Location: "; location = gets.chomp
 	print "Start date and time (yyyy-mm-dd hh:mm): "; start_datetime = gets.chomp
 	print "End date and time (yyyy-mm-dd hh:mm): "; end_datetime = gets.chomp
+	new_user = User.create(name: name)
 	new_event = Event.create(description: description, location: location, 
-							 start_datetime: start_datetime, end_datetime: end_datetime)
+							 start_datetime: start_datetime, end_datetime: end_datetime, user_id: new_user.id)
 	puts "New event * #{new_event.description} * was added!\n\n"
 end
 
