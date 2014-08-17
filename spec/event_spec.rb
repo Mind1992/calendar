@@ -9,4 +9,10 @@ describe Event do
 		expect(new_event.location).to eq "Smugglers cove"
 	end
 	it { should belong_to :user }
+	it 'should return all surfing spots' do 
+		new_event = Event.create(description: "surfing", location: "smugglers cove")
+		new_event2 = Event.create(description: "surfing", location: "indian beach")
+		new_event3 = Event.create(description: "shopping", location: "New Seasons")
+		expect(Event.surfing).to eq [new_event, new_event2]
+	end
 end
